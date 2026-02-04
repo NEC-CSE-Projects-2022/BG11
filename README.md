@@ -46,66 +46,124 @@ doctors take action earlier and save lives.
 ---
 
 ## Paper Reference (Inspiration)
-👉 **[Paper Title  Stroke Prediction Using Deep Learning and
-Transfer Learning Approaches
-  – Author Names ::Ting-Wei Wu
- ](https://ieeexplore.ieee.org/document/10599507/)**
-Original conference/IEEE paper used as inspiration for the model.
+👉 **[https://ieeexplore.ieee.org/document/10599507/]**
+Stroke Prediction Using Deep Learning and
+Transfer Learning Approaches  author:Ting-Wei Wu
 
 ---
 
 ## Our Improvement Over Existing Paper
-xxxxxxxxxx
+
+- Implemented **SMOTEENN** technique to handle class imbalance and improve stroke case prediction.
+- Applied **transfer learning** to increase model accuracy and reduce training time.
+- Performed improved **data cleaning and feature engineering** for more reliable results.
+- Evaluated the model using multiple metrics such as **Precision, Recall, F1-score, and ROC-AUC** instead of only accuracy.
+- Developed a complete **end-to-end stroke prediction system** for practical usage.
+- Achieved **higher accuracy and better minority class (stroke) detection performance** compared to the existing approach.
+
 
 ---
 
 ## About the Project
-Give a simple explanation of:
-- What your project does
-- Why it is useful
-- General project workflow (input → processing → model → output)
+
+This project focuses on predicting the risk of stroke using machine learning and deep learning techniques. It takes patient health information such as age, gender, hypertension, heart disease, BMI, glucose level, and lifestyle factors as input and predicts whether a person is at high or low risk of stroke.
+
+The system is useful for early stroke risk detection, helping doctors and healthcare professionals take preventive actions before a stroke occurs. It improves medical decision support by providing accurate and reliable predictions.
+
+### Project Workflow
+
+1. **Input:** Patient health data (age, blood pressure, BMI, glucose level, etc.)  
+2. **Processing:** Data cleaning, normalization, and handling class imbalance using SMOTEENN  
+3. **Model:** Deep learning and transfer learning models are trained on the processed dataset  
+4. **Output:** Stroke risk prediction (High Risk / Low Risk) along with performance evaluation metrics
 
 ---
 
 ## Dataset Used
-👉 **[Dataset Name](Dataset URL)**
+👉 **[Cerebral Stroke Prediction – Imbalanced Dataset (Kaggle)](https://www.kaggle.com/datasets/shashwatwork/cerebral-stroke-predictionimbalaced-dataset)**
 
 **Dataset Details:**
-xxxxxxxxxx
+- This dataset contains medical and lifestyle information of patients for predicting stroke risk.
+- It includes features such as age, gender, hypertension, heart disease, BMI, average glucose level, smoking status, and work type.
+- The target column is **stroke**, where 0 indicates no stroke and 1 indicates stroke.
+- The dataset is highly imbalanced with fewer stroke cases compared to non-stroke cases.
+- Data preprocessing and class balancing were performed using the **SMOTEENN** technique.
+- The dataset is used to train and evaluate deep learning and transfer learning models for early stroke risk prediction.
+
 
 ---
 
 ## Dependencies Used
-xxxxxxxxxx, xxxxxxxxxx, xxxxxxxxxx ...
 
----
+Python, NumPy, Pandas, Scikit-learn, TensorFlow/Keras, Imbalanced-learn (SMOTEENN), Matplotlib, Seaborn, Flask
+
 
 ## EDA & Preprocessing
-xxxxxxxxxx
 
----
+- Performed Exploratory Data Analysis (EDA) to understand data distribution and detect missing values and outliers.
+- Handled missing values using appropriate imputation techniques.
+- Converted categorical features into numerical values using label encoding and one-hot encoding.
+- Normalized and scaled numerical features for better model performance.
+- Addressed class imbalance using the **SMOTEENN** technique.
+- Split the dataset into training and testing sets for model evaluation.
 
 ## Model Training Info
-xxxxxxxxxx
 
----
+- Implemented deep learning and transfer learning models for stroke risk prediction.
+- Trained the models on the preprocessed and balanced dataset using the SMOTEENN technique.
+- Used an 80:20 split for training and testing the data.
+- Applied hyperparameter tuning to improve model performance.
+- Evaluated the trained models using Precision, Recall, F1-score, Accuracy, and ROC-AUC metrics.
+- Selected the best-performing model for final stroke risk prediction.
+
 
 ## Model Testing / Evaluation
-xxxxxxxxxx
 
----
+- Tested the trained model on unseen test data to measure its performance.
+- Used evaluation metrics such as Accuracy, Precision, Recall, F1-score, and ROC-AUC.
+- Analyzed confusion matrix to understand correct and incorrect predictions.
+- Compared results with the existing paper to verify improvements.
+- Ensured better detection of minority class (stroke cases).
+- Validated the reliability of the model for early stroke risk prediction.
+
 
 ## Results
-xxxxxxxxxx
 
----
+- The proposed model achieved high accuracy and improved performance compared to the existing approach.
+- SMOTEENN significantly enhanced the detection of stroke (minority class) cases.
+- Transfer learning improved model generalization and reduced training time.
+- The model showed better Precision, Recall, and F1-score values.
+- ROC-AUC score indicated strong classification capability.
+- The system proved effective for early and reliable stroke risk prediction.
+
 
 ## Limitations & Future Work
-xxxxxxxxxx
 
----
+### Limitations
+- The model is trained on a limited dataset, which may affect generalization to different populations.
+- The dataset contains imbalanced classes, which can still introduce bias despite using SMOTEENN.
+- Only structured tabular data is used; real-time clinical data and imaging data are not included.
+- The model performance depends on the quality and completeness of the input data.
+- The system is not yet integrated with real hospital or clinical decision systems.
+- Interpretability of deep learning models is limited, making it harder to explain predictions to medical professionals.
+
+### Future Work
+- Train the model on larger and more diverse datasets for improved robustness.
+- Integrate real-time patient monitoring data from wearable devices.
+- Extend the model to include medical imaging data such as CT or MRI scans.
+- Improve explainability using techniques like SHAP or LIME.
+- Deploy the system as a full web or mobile application for clinical use.
+- Perform clinical validation with healthcare professionals.
+- Explore advanced ensemble and hybrid deep learning models for higher accuracy.
+- Add multilingual and user-friendly interfaces for broader accessibility.
+
 
 ## Deployment Info
-xxxxxxxxxx
 
----
+- The trained stroke prediction model is integrated into a simple application for user input and output display.
+- A Flask-based web interface is used to deploy the model locally.
+- Users can enter patient health details through a form and receive stroke risk prediction results.
+- The system runs on a local server for testing and demonstration purposes.
+- The model file is saved and loaded using pickle/Joblib for prediction.
+- This deployment allows easy testing and practical usage of the trained model.
+
