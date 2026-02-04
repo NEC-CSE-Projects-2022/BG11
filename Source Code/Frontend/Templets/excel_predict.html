@@ -1,0 +1,748 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excel Stroke Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<header>
+  <h1>📊 Excel Stroke Prediction</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/predict">Predict</a>
+    <a href="/excel_predict">Excel Upload</a>
+    <a href="/about">About</a>
+    <a href="/risk">Risk</a>
+    <a href="/excel_predict">Excel Upload</a>
+
+  </nav>
+</header>
+
+<main class="form-container">
+  <h2>Upload Excel File</h2>
+
+  <form action="/excel_predict" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".xlsx,.xls" required>
+      <button class="btn" type="submit">Predict</button>
+  </form>
+
+  {% if results %}
+  <h2>Prediction Results</h2>
+  <table border="1" cellpadding="8">
+      <tr>
+          {% for col in results[0].keys() %}
+              <th>{{ col }}</th>
+          {% endfor %}
+      </tr>
+
+      {% for row in results %}
+      <tr>
+          {% for value in row.values() %}
+              <td>{{ value }}</td>
+          {% endfor %}
+      </tr>
+      {% endfor %}
+  </table>
+  {% endif %}
+
+</main>
+
+<footer>
+  <p>© 2025 Stroke Prediction System</p>
+</footer>
+
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excel Stroke Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f6fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #2e86de;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .form-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #2e86de;
+    }
+
+    .btn {
+      background-color: #2e86de;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background-color: #1b4f72;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+
+    table th {
+      background-color: #2e86de;
+      color: white;
+    }
+
+    table tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    table tr:hover {
+      background-color: #d6eaf8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #2e86de;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📊 Excel Stroke Prediction</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/predict">Predict</a>
+    <a href="/excel_predict">Excel Upload</a>
+    <a href="/about">About</a>
+    <a href="/risk">Risk</a>
+  </nav>
+</header>
+
+<main class="form-container">
+  <h2>Upload Excel File</h2>
+
+  <form action="/excel_predict" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".xlsx,.xls" required>
+      <button class="btn" type="submit">Predict</button>
+  </form>
+
+  {% if results %}
+  <h2>Prediction Results</h2>
+  <table>
+      <tr>
+          {% for col in results[0].keys() %}
+              <th>{{ col }}</th>
+          {% endfor %}
+      </tr>
+
+      {% for row in results %}
+      <tr>
+          {% for value in row.values() %}
+              <td>{{ value }}</td>
+          {% endfor %}
+      </tr>
+      {% endfor %}
+  </table>
+  {% endif %}
+
+</main>
+
+<footer>
+  <p>© 2025 Stroke Prediction System</p>
+</footer>
+
+</body>
+</html> -->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excel Stroke Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f6fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #2e86de;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Form Container */
+    .form-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #2e86de;
+    }
+
+    input[type="file"] {
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .btn {
+      background-color: #2e86de;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background-color: #1b4f72;
+    }
+
+    /* Responsive Table */
+    .table-container {
+      overflow-x: auto; /* enables horizontal scrolling */
+      margin-top: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 900px; /* prevents table from shrinking too much */
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+    }
+
+    table th {
+      background-color: #2e86de;
+      color: white;
+    }
+
+    table tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    table tr:hover {
+      background-color: #d6eaf8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background-color: #2e86de;
+      color: white;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      .form-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📊 Excel Stroke Prediction</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/predict">Predict</a>
+    
+    <a href="/about">About</a>
+    <a href="/risk">Risk</a>
+    <a href="/excel_predict">Excel Upload</a>
+  </nav>
+</header>
+
+<main class="form-container">
+  <h2>Upload Excel File</h2>
+
+  <form action="/excel_predict" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".xlsx,.xls" required>
+      <button class="btn" type="submit">Predict</button>
+  </form>
+
+  {% if results %}
+  <h2>Prediction Results</h2>
+  <div class="table-container">
+    <table>
+        <tr>
+            {% for col in results[0].keys() %}
+                <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+
+        {% for row in results %}
+        <tr>
+            {% for value in row.values() %}
+                <td>{{ value }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+
+</main>
+
+<footer>
+  <p>© 2025 Stroke Prediction System</p>
+</footer>
+
+</body>
+</html> -->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excel Stroke Prediction</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f5f6fa; margin: 0; padding: 0; }
+    header { background-color: #2e86de; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+    header h1 { margin: 0; font-size: 24px; }
+    nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    .form-container { max-width: 1000px; margin: 40px auto; background-color: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    h2 { color: #2e86de; }
+    input[type="file"] { padding: 10px; margin-top: 10px; border-radius: 8px; border: 1px solid #ccc; }
+    .btn { background-color: #2e86de; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 16px; margin-top: 10px; }
+    .btn:hover { background-color: #1b4f72; }
+    .table-container { overflow-x: auto; margin-top: 20px; }
+    table { width: 100%; border-collapse: collapse; min-width: 900px; }
+    table th, table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+    table th { background-color: #2e86de; color: white; }
+    table tr:nth-child(even) { background-color: #f2f2f2; }
+    table tr:hover { background-color: #d6eaf8; }
+    footer { text-align: center; padding: 15px; background-color: #2e86de; color: white; margin-top: 40px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📊 Excel Stroke Prediction</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/predict">Predict</a>
+    <a href="/about">About</a>
+    <a href="/risk">Risk</a>
+    <a href="/excel_predict">Excel Upload</a>
+  </nav>
+</header>
+
+<main class="form-container">
+  <h2>Upload Excel File</h2>
+  <form action="/excel_predict" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".xlsx,.xls" required>
+      <button class="btn" type="submit">Predict</button>
+  </form>
+
+  {% if results %}
+  <h2>Prediction Results</h2>
+  <div class="table-container">
+    <table>
+        <tr>
+            {% for col in results[0].keys() %}
+                <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in results %}
+        <tr>
+            {% for value in row.values() %}
+                <td>{{ value }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+
+  {% if graph_html %}
+  <h2>Gender Distribution Chart</h2>
+  <div>
+    {{ graph_html | safe }}
+  </div>
+  {% endif %}
+</main>
+
+<footer>
+  <p>© 2025 Stroke Prediction System</p>
+</footer>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excel Stroke Prediction</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f5f6fa; margin: 0; padding: 0; }
+    header { background-color: #2e86de; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+    header h1 { margin: 0; font-size: 24px; }
+    nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    .form-container { max-width: 1000px; margin: 40px auto; background-color: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    h2 { color: #2e86de; }
+    input[type="file"] { padding: 10px; margin-top: 10px; border-radius: 8px; border: 1px solid #ccc; }
+    .btn { background-color: #2e86de; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 16px; margin-top: 10px; }
+    .btn:hover { background-color: #1b4f72; }
+    .table-container { overflow-x: auto; margin-top: 20px; }
+    table { width: 100%; border-collapse: collapse; min-width: 900px; }
+    table th, table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+    table th { background-color: #2e86de; color: white; }
+    table tr:nth-child(even) { background-color: #f2f2f2; }
+    table tr:hover { background-color: #d6eaf8; }
+    footer { text-align: center; padding: 15px; background-color: #2e86de; color: white; margin-top: 40px; }
+    .chart-container { margin-top: 40px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📊 Excel Stroke Prediction</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/predict">Predict</a>
+    <a href="/about">About</a>
+    <a href="/risk">Risk</a>
+    <a href="/excel_predict">Excel Upload</a>
+  </nav>
+</header>
+
+<main class="form-container">
+  <h2>Upload Excel File</h2>
+  <form action="/excel_predict" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".xlsx,.xls" required>
+      <button class="btn" type="submit">Predict</button>
+  </form>
+
+  {% if results %}
+  <h2>Prediction Results</h2>
+  <div class="table-container">
+    <table>
+        <tr>
+            {% for col in results[0].keys() %}
+                <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in results %}
+        <tr>
+            {% for value in row.values() %}
+                <td>{{ value }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+
+  {% if graph_htmls %}
+  <div class="chart-container">
+    {% for chart in graph_htmls %}
+      <div>{{ chart | safe }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</main>
+
+<footer>
+  <p>© 2025 Stroke Prediction System</p>
+</footer>
+
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excel Stroke Prediction</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f5f6fa; margin: 0; padding: 0; }
+    header { background-color: #2e86de; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: left; }
+    header h1 { margin: 0; font-size: 24px; }
+    nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    .form-container { max-width: 1000px; margin: 40px auto; background-color: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    h2 { color: #2e86de; }
+    input[type="file"] { padding: 10px; margin-top: 10px; border-radius: 8px; border: 1px solid #ccc; }
+    .btn { background-color: #2e86de; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 16px; margin-top: 10px; }
+    .btn:hover { background-color: #1b4f72; }
+    .table-container { overflow-x: auto; margin-top: 20px; }
+    table { width: 100%; border-collapse: collapse; min-width: 900px; }
+    table th, table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+    table th { background-color: #2e86de; color: white; }
+    table tr:nth-child(even) { background-color: #f2f2f2; }
+    table tr:hover { background-color: #d6eaf8; }
+    footer { text-align: center; padding: 15px; background-color: #2e86de; color: white; margin-top: 40px; }
+    .chart-container { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 30px; }
+    .chart-container > div { flex: 1 1 45%; min-width: 300px; }
+    @media (max-width: 600px) {
+      .form-container { padding: 20px; }
+      .chart-container > div { flex: 1 1 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📊 Excel Stroke Prediction</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/predict">Predict</a>
+    <a href="/about">About</a>
+    <a href="/risk">Risk</a>
+    <a href="/excel_predict">Excel Upload</a>
+  </nav>
+</header>
+
+<main class="form-container">
+  <h2>Upload Excel File</h2>
+  <form action="/excel_predict" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".xlsx,.xls" required>
+      <button class="btn" type="submit">Predict</button>
+  </form>
+
+  {% if results %}
+  <h2>Prediction Results</h2>
+  <div class="table-container">
+    <table>
+        <tr>
+            {% for col in results[0].keys() %}
+                <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in results %}
+        <tr>
+            {% for value in row.values() %}
+                <td>{{ value }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+
+  {% if graph_htmls %}
+  <h2>Exploratory Data Analysis</h2>
+  <div class="chart-container">
+    {% for chart in graph_htmls %}
+      <div>{{ chart | safe }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</main>
+
+<footer>
+  <p>© 2025 Stroke Prediction System</p>
+</footer>
+
+</body>
+</html> -->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Excel Stroke Prediction</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f5f6fa; margin: 0; padding: 0; }
+    header { background-color: #2e86de; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; }
+    header h1 { margin: 0; font-size: 24px; }
+    nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+
+    .form-container { max-width: 1200px; margin: 40px auto; background-color: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+    h2 { color: #2e86de; }
+
+    input[type="file"] { padding: 10px; margin-top: 10px; border-radius: 8px; border: 1px solid #ccc; }
+    .btn { background-color: #2e86de; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 16px; margin-top: 10px; }
+    .btn:hover { background-color: #1b4f72; }
+
+    .table-container { overflow-x: auto; margin-top: 20px; }
+    table { width: 100%; border-collapse: collapse; min-width: 900px; }
+    table th, table td { border: 1px solid #ddd; padding: 12px; text-align: center; }
+    table th { background-color: #2e86de; color: white; }
+    table tr:nth-child(even) { background-color: #f2f2f2; }
+    table tr:hover { background-color: #d6eaf8; }
+
+    footer { text-align: center; padding: 15px; background-color: #2e86de; color: white; margin-top: 40px; }
+
+    /* Chart Layout */
+    .chart-section { margin-top: 30px; }
+    .chart-section h3 { color: #2e86de; margin-bottom: 10px; }
+    .chart-container { display: flex; flex-wrap: wrap; gap: 20px; }
+    .chart-container > div { flex: 1 1 45%; min-width: 300px; padding: 10px; box-sizing: border-box; }
+    .chart-container iframe, .chart-container div > div { width: 100% !important; min-height: 400px; }
+
+    @media (max-width: 900px) {
+      .chart-container { flex-direction: column; }
+      .chart-container > div { flex: 1 1 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>📊 Excel Stroke Prediction</h1>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/predict">Predict</a>
+    <a href="/about">About</a>
+    <a href="/risk">Risk</a>
+    <a href="/excel_predict">Excel Upload</a>
+  </nav>
+</header>
+
+<main class="form-container">
+  <h2>Upload Excel File</h2>
+  <form action="/excel_predict" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file" accept=".xlsx,.xls" required>
+      <button class="btn" type="submit">Predict</button>
+  </form>
+
+  {% if results %}
+  <h2>Prediction Results</h2>
+  <div class="table-container">
+    <table>
+        <tr>
+            {% for col in results[0].keys() %}
+                <th>{{ col }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in results %}
+        <tr>
+            {% for value in row.values() %}
+                <td>{{ value }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+  </div>
+  {% endif %}
+
+  {% if graph_sections %}
+  <h2>Exploratory Data Analysis</h2>
+  {% for section in graph_sections %}
+    <div class="chart-section">
+      <h3>{{ section.name }}</h3>
+      <div class="chart-container">
+        {% for chart in section.charts %}
+          <div>{{ chart | safe }}</div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+  {% endif %}
+
+</main>
+
+<footer>
+  <p>© 2025 Stroke Prediction System</p>
+</footer>
+
+</body>
+</html> -->

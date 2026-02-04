@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lifestyle Stroke Risk Check</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header>
+    <h1>🧠 Stroke Lifestyle Risk Assessment</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/predict">Predict</a>
+      <a href="/about">About</a>
+      <a href="/risk">Risk</a>
+      <a href="/excel_predict">Excel Upload</a>
+
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-container">
+      <h2>Check Your Daily Habits</h2>
+
+      <form id="lifestyleForm" onsubmit="return checkLifestyleRisk(event)">
+
+        <label>Smoking:</label>
+        <select name="smoking" required>
+          <option value="0">Non-smoker</option>
+          <option value="1">Occasional</option>
+          <option value="2">Regular</option>
+        </select>
+
+        <label>Alcohol Intake:</label>
+        <select name="alcohol" required>
+          <option value="0">Rarely/Never</option>
+          <option value="1">Moderate</option>
+          <option value="2">Frequent</option>
+        </select>
+
+        <label>Physical Activity:</label>
+        <select name="activity" required>
+          <option value="0">Regular (5+ days/week)</option>
+          <option value="1">Sometimes (2-4 days/week)</option>
+          <option value="2">Rarely/Never</option>
+        </select>
+
+        <label>Diet:</label>
+        <select name="diet" required>
+          <option value="0">Healthy (balanced diet)</option>
+          <option value="1">Moderate (mix of healthy/junk)</option>
+          <option value="2">Unhealthy (mostly junk, high salt/sugar)</option>
+        </select>
+
+        <label>Sleep Patterns:</label>
+        <select name="sleep" required>
+          <option value="0">Good (7-9 hrs)</option>
+          <option value="1">Moderate (5-6 hrs)</option>
+          <option value="2">Poor (<5 hrs or disturbed)</option>
+        </select>
+
+        <label>Stress & Mental Health:</label>
+        <select name="stress" required>
+          <option value="0">Low Stress</option>
+          <option value="1">Moderate Stress</option>
+          <option value="2">High Stress</option>
+        </select>
+
+        <button type="submit" class="btn">Check Risk</button>
+      </form>
+
+      <div id="result" class="result"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Stroke Prediction System | Designed with care 💙</p>
+  </footer>
+
+  <script>
+    function checkLifestyleRisk(event) {
+      event.preventDefault();
+      const form = document.getElementById("lifestyleForm");
+      const values = Array.from(form.elements).filter(e => e.tagName === "SELECT");
+      
+      let score = 0;
+      values.forEach(v => {
+        score += parseInt(v.value);
+      });
+
+      let resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "";
+
+      if (score <= 3) {
+        resultDiv.innerHTML = `
+          <h3>✅ Low Risk</h3>
+          <p>You seem to have a healthy lifestyle. Keep it up! 💪</p>
+          <ul>
+            <li>Continue regular exercise</li>
+            <li>Maintain a balanced diet</li>
+            <li>Stay stress-free & sleep well</li>
+          </ul>
+        `;
+      } else if (score <= 7) {
+        resultDiv.innerHTML = `
+          <h3>⚠️ Moderate Risk</h3>
+          <p>Your lifestyle shows some stroke risk factors. We recommend detailed prediction.</p>
+          <button onclick="window.location.href='/predict'" class="btn">Go to Medical Prediction</button>
+        `;
+      } else {
+        resultDiv.innerHTML = `
+          <h3>❌ High Risk</h3>
+          <p>Your habits indicate a high stroke risk. Please use the medical prediction form for detailed results.</p>
+          <button onclick="window.location.href='/predict'" class="btn">Go to Medical Prediction</button>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>

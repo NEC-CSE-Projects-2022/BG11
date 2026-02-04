@@ -1,0 +1,576 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stroke Risk Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Stroke Risk Prediction</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/predict">Predict</a>
+      <a href="/about">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-container">
+      <h2>Fill the Details</h2>
+      <form method="POST">
+        <input type="number" name="age" placeholder="Age" required>
+        <select name="gender">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+        <select name="ever_married">
+          <option value="Yes">Married</option>
+          <option value="No">Not Married</option>
+        </select>
+        <input type="number" name="hypertension" placeholder="Hypertension (0/1)" required>
+        <input type="number" name="heart_disease" placeholder="Heart Disease (0/1)" required>
+        <input type="number" name="avg_glucose_level" placeholder="Avg Glucose Level" step="0.1" required>
+        <input type="number" name="bmi" placeholder="BMI" step="0.1" required>
+
+        <select name="work_type">
+          <option value="Private">Private</option>
+          <option value="Self-employed">Self-employed</option>
+          <option value="Govt_job">Government Job</option>
+          <option value="Never_worked">Never Worked</option>
+        </select>
+
+        <select name="residence_type">
+          <option value="Urban">Urban</option>
+          <option value="Rural">Rural</option>
+        </select>
+
+        <select name="smoking_status">
+          <option value="never smoked">Never Smoked</option>
+          <option value="formerly smoked">Formerly Smoked</option>
+          <option value="smokes">Smokes</option>
+        </select>
+
+        <button type="submit" class="btn">Predict</button>
+      </form>
+
+      {% if result %}
+        <div class="result">
+          <h3>{{ result }}</h3>
+        </div>
+      {% endif %}
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Stroke Prediction System | Designed with care 💙</p>
+  </footer>
+</body>
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stroke Risk Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Stroke Risk Prediction</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/predict">Predict</a>
+      <a href="/about">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-container">
+      <h2>Fill the Details</h2>
+      <form method="POST" action="/predict">
+        <input type="number" name="age" placeholder="Age" required>
+
+        <select name="gender" required>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <select name="ever_married" required>
+          <option value="Yes">Married</option>
+          <option value="No">Not Married</option>
+        </select>
+
+        <input type="number" name="hypertension" placeholder="Hypertension (0/1)" required>
+        <input type="number" name="heart_disease" placeholder="Heart Disease (0/1)" required>
+        <input type="number" name="avg_glucose_level" placeholder="Avg Glucose Level" step="0.1" required>
+        <input type="number" name="bmi" placeholder="BMI" step="0.1" required>
+
+        <select name="work_type" required>
+          <option value="Private">Private</option>
+          <option value="Self-employed">Self-employed</option>
+          <option value="Govt_job">Government Job</option>
+          <option value="Never_worked">Never Worked</option>
+          <option value="children">Children</option>
+        </select>
+
+        <select name="Residence_type" required>
+          <option value="Urban">Urban</option>
+          <option value="Rural">Rural</option>
+        </select>
+
+        <select name="smoking_status" required>
+          <option value="never smoked">Never Smoked</option>
+          <option value="formerly smoked">Formerly Smoked</option>
+          <option value="smokes">Smokes</option>
+        </select>
+
+        <button type="submit" class="btn">Predict</button>
+      </form>
+
+      {% if result %}
+        <div class="result">
+          <h3>{{ result }}</h3>
+          <p>Probability: {{ probability }}</p>
+        </div>
+      {% endif %}
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Stroke Prediction System | Designed with care 💙</p>
+  </footer>
+</body>
+</html> -->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stroke Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f4f4f9;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align:center;">Stroke Prediction Form</h2>
+    
+    <form method="POST" action="/predict">
+        
+        <label for="age">Age</label>
+        <input type="number" step="0.1" name="age" required>
+
+       
+        <label for="hypertension">Hypertension</label>
+        <select name="hypertension" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        <label for="heart_disease">Heart Disease</label>
+        <select name="heart_disease" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+
+        
+        <label for="avg_glucose_level">Average Glucose Level</label>
+        <input type="number" step="0.01" name="avg_glucose_level" required>
+
+        <label for="bmi">BMI</label>
+        <input type="number" step="0.1" name="bmi" required>
+
+        
+        <label>Gender</label>
+        <select name="gender" required>
+            <option value="gender_Female">Female</option>
+            <option value="gender_Male">Male</option>
+            <option value="gender_Other">Other</option>
+        </select>
+
+        
+        <label>Ever Married</label>
+        <select name="ever_married" required>
+            <option value="ever_married_No">No</option>
+            <option value="ever_married_Yes">Yes</option>
+        </select>
+
+        
+        <label>Work Type</label>
+        <select name="work_type" required>
+            <option value="work_type_Govt_job">Government Job</option>
+            <option value="work_type_Never_worked">Never Worked</option>
+            <option value="work_type_Private">Private</option>
+            <option value="work_type_Self-employed">Self-employed</option>
+            <option value="work_type_children">Children</option>
+        </select>
+
+        
+        <label>Residence Type</label>
+        <select name="Residence_type" required>
+            <option value="Residence_type_Rural">Rural</option>
+            <option value="Residence_type_Urban">Urban</option>
+        </select>
+
+        
+        <label>Smoking Status</label>
+        <select name="smoking_status" required>
+            <option value="smoking_status_formerly smoked">Formerly Smoked</option>
+            <option value="smoking_status_never smoked">Never Smoked</option>
+            <option value="smoking_status_smokes">Smokes</option>
+        </select>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+    {% endif %}
+</body>
+</html> -->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stroke Prediction</title>
+</head>
+<body>
+  <h2>Stroke Prediction Form</h2>
+
+  <form method="POST" action="/predict">
+    <label>Age:</label>
+    <input type="number" step="0.1" name="age" required><br>
+
+    <label>Hypertension:</label>
+    <select name="hypertension" required>
+      <option value="0">No</option>
+      <option value="1">Yes</option>
+    </select><br>
+
+    <label>Heart Disease:</label>
+    <select name="heart_disease" required>
+      <option value="0">No</option>
+      <option value="1">Yes</option>
+    </select><br>
+
+    <label>Average Glucose Level:</label>
+    <input type="number" step="0.01" name="avg_glucose_level" required><br>
+
+    <label>BMI:</label>
+    <input type="number" step="0.1" name="bmi" required><br>
+
+    <label>Gender:</label>
+    <select name="gender" required>
+      <option value="gender_Female">Female</option>
+      <option value="gender_Male">Male</option>
+      <option value="gender_Other">Other</option>
+    </select><br>
+
+    <label>Ever Married:</label>
+    <select name="ever_married" required>
+      <option value="ever_married_No">No</option>
+      <option value="ever_married_Yes">Yes</option>
+    </select><br>
+
+    <label>Work Type:</label>
+    <select name="work_type" required>
+      <option value="work_type_Govt_job">Government Job</option>
+      <option value="work_type_Never_worked">Never Worked</option>
+      <option value="work_type_Private">Private</option>
+      <option value="work_type_Self-employed">Self-employed</option>
+      <option value="work_type_children">Children</option>
+    </select><br>
+
+    <label>Residence Type:</label>
+    <select name="Residence_type" required>
+      <option value="Residence_type_Rural">Rural</option>
+      <option value="Residence_type_Urban">Urban</option>
+    </select><br>
+
+    <label>Smoking Status:</label>
+    <select name="smoking_status" required>
+      <option value="smoking_status_formerly smoked">Formerly Smoked</option>
+      <option value="smoking_status_never smoked">Never Smoked</option>
+      <option value="smoking_status_smokes">Smokes</option>
+    </select><br><br>
+
+    <button type="submit">Predict</button>
+  </form>
+
+  {% if prediction_text %}
+    <h3>{{ prediction_text }}</h3>
+  {% endif %}
+</body>
+</html> -->
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stroke Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header>
+    <h1>🧠 Stroke Prediction System</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/predict">Predict</a>
+      <a href="/about">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-container">
+      <h2>Stroke Prediction Form</h2>
+      <form method="POST" action="/predict">
+
+        <label>Age:</label>
+        <input type="number" step="0.1" name="age" placeholder="Enter age" required>
+
+        <label>Gender:</label>
+        <select name="gender" required>
+          <option value="gender_Female">Female</option>
+          <option value="gender_Male">Male</option>
+          <option value="gender_Other">Other</option>
+        </select>
+
+        <label>Ever Married:</label>
+        <select name="ever_married" required>
+          <option value="ever_married_No">No</option>
+          <option value="ever_married_Yes">Yes</option>
+        </select>
+
+        <label>Hypertension:</label>
+        <select name="hypertension" required>
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+
+        <label>Heart Disease:</label>
+        <select name="heart_disease" required>
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+
+        <label>Average Glucose Level:</label>
+        <input type="number" step="0.01" name="avg_glucose_level" placeholder="Enter glucose level" required>
+
+        <label>BMI:</label>
+        <input type="number" step="0.1" name="bmi" placeholder="Enter BMI" required>
+
+        <label>Work Type:</label>
+        <select name="work_type" required>
+          <option value="work_type_Govt_job">Government Job</option>
+          <option value="work_type_Never_worked">Never Worked</option>
+          <option value="work_type_Private">Private</option>
+          <option value="work_type_Self-employed">Self-employed</option>
+          <option value="work_type_children">Children</option>
+        </select>
+
+        <label>Residence Type:</label>
+        <select name="Residence_type" required>
+          <option value="Residence_type_Rural">Rural</option>
+          <option value="Residence_type_Urban">Urban</option>
+        </select>
+
+        <label>Smoking Status:</label>
+        <select name="smoking_status" required>
+          <option value="smoking_status_formerly smoked">Formerly Smoked</option>
+          <option value="smoking_status_never smoked">Never Smoked</option>
+          <option value="smoking_status_smokes">Smokes</option>
+        </select>
+
+        <button type="submit" class="btn">Predict</button>
+      </form>
+
+      {% if prediction_text %}
+        <div class="result">
+          <h3>{{ prediction_text }}</h3>
+        </div>
+      {% endif %}
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Stroke Prediction System | Designed with care 💙</p>
+  </footer>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stroke Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <header>
+    <h1>🧠 Stroke Prediction System</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/predict">Predict</a>
+      <a href="/about">About</a>
+      <a href="/risk">Risk</a>
+      <a href="/excel_predict">Excel Upload</a>
+
+    </nav>
+  </header>
+
+  <main>
+    <section class="form-container">
+      <h2>Stroke Prediction Form</h2>
+      <form method="POST" action="/predict" onsubmit="return validateForm()">
+
+        <label>Age:</label>
+        <input type="number" step="0.1" name="age" placeholder="Enter age" min="0" max="120" required>
+
+        <label>Gender:</label>
+        <select name="gender" required>
+          <option value="gender_Female">Female</option>
+          <option value="gender_Male">Male</option>
+          <option value="gender_Other">Other</option>
+        </select>
+
+        <label>Ever Married:</label>
+        <select name="ever_married" required>
+          <option value="ever_married_No">No</option>
+          <option value="ever_married_Yes">Yes</option>
+        </select>
+
+        <label>Hypertension:</label>
+        <select name="hypertension" required>
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+
+        <label>Heart Disease:</label>
+        <select name="heart_disease" required>
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+
+        <label>Average Glucose Level:</label>
+        <input type="number" step="0.01" name="avg_glucose_level" placeholder="Enter glucose level" min="0" max="500" required>
+
+        <label>BMI:</label>
+        <input type="number" step="0.1" name="bmi" placeholder="Enter BMI" min="0" max="100" required>
+
+        <label>Work Type:</label>
+        <select name="work_type" required>
+          <option value="work_type_Govt_job">Government Job</option>
+          <option value="work_type_Never_worked">Never Worked</option>
+          <option value="work_type_Private">Private</option>
+          <option value="work_type_Self-employed">Self-employed</option>
+          <option value="work_type_children">Children</option>
+        </select>
+
+        <label>Residence Type:</label>
+        <select name="Residence_type" required>
+          <option value="Residence_type_Rural">Rural</option>
+          <option value="Residence_type_Urban">Urban</option>
+        </select>
+
+        <label>Smoking Status:</label>
+        <select name="smoking_status" required>
+          <option value="smoking_status_formerly smoked">Formerly Smoked</option>
+          <option value="smoking_status_never smoked">Never Smoked</option>
+          <option value="smoking_status_smokes">Smokes</option>
+        </select>
+
+        <button type="submit" class="btn">Predict</button>
+      </form>
+
+      {% if prediction_text %}
+        <div class="result">
+          <h3>{{ prediction_text }}</h3>
+        </div>
+      {% endif %}
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Stroke Prediction System | Designed with care 💙</p>
+  </footer>
+
+  <!-- JS Validation -->
+  <script>
+    function validateForm() {
+      const age = document.querySelector("[name='age']").value;
+      const glucose = document.querySelector("[name='avg_glucose_level']").value;
+      const bmi = document.querySelector("[name='bmi']").value;
+
+      // Prevent negatives
+      if (age < 0 || glucose < 0 || bmi < 0) {
+        alert("Negative values are not allowed.");
+        return false;
+      }
+
+      // No special characters check (for text inputs in future)
+      const regex = /^[a-zA-Z0-9\s.,-]*$/;
+      const inputs = document.querySelectorAll("input[type='text']");
+      for (let inp of inputs) {
+        if (!regex.test(inp.value)) {
+          alert("Special characters are not allowed in text fields.");
+          return false;
+        }
+      }
+
+      return true;
+    }
+  </script>
+</body>
+</html>
