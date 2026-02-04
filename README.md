@@ -1,10 +1,9 @@
 
-# BG11 – Deep Stroke Detect: Optimizing Stroke Risk
-Prediction Using SMOTEENN and Transfer
-Learning
+# BG11 – Deep Stroke Detect: Optimizing Stroke Risk Prediction Using SMOTEENN and Transfer Learning
+
 
 ## Team Info
-- 22471A05D3 — **Nazeema** ( [LinkedIn](https://linkedin.com/in/xxxxxxxxxx) )
+- 22471A05D3 — **Nazeema** ( [LinkedIn](https://www.linkedin.com/in/nazeema-shaik-9549b236b/) )
 _Work Done: Led the project planning and system design, handled data preprocessing and feature engineering, implemented SMOTEENN for class imbalance handling, developed and trained deep learning and transfer learning models, integrated the prediction pipeline, and ensured overall system accuracy and reliability.
 
 - 22471A05B4 — **Akhila** ( [LinkedIn](https://linkedin.com/in/xxxxxxxxxx) )
