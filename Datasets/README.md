@@ -6,7 +6,7 @@ This project uses two different datasets: one for model pretraining and another 
 
 The model is first trained on a surgical binary classification dataset to learn general medical patterns.
 
-🔗 **[Download Surgical Dataset](https://www.kaggle.com/datasets/omnamahshivai/surgical-dataset-binaryclassification/code?select=Surgical-deepnet.csv)**
+🔗 **[Download Surgical Dataset](https://www.kaggle.com/datasets/omnamahshivai/surgical-dataset-binary-classification)**
 
 **Dataset Includes:**
 - **Train Dataset** – Used for initial model training  
